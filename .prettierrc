@@ -1,0 +1,13 @@
+# (https://prettier.io/docs/en/options.html)
+
+printWidth: 80        # wrap on column 80
+useTabs: false        # indent with spaces
+tabWidth: 4           # indent 4 spaces
+overrides:
+    - files: "*.js"
+      options:
+            semi: true                 # use semicolons
+            singleQuote: true          # prefer single quotes
+            trailingComma: es5         # trailing commas where valid in ES5
+            bracketSpacing: true       # prefer { foo: bar }
+            arrowParens: always        # prefer (x) => x

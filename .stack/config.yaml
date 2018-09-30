@@ -1,0 +1,11 @@
+templates:
+    params:
+        author-name: Jordan Mackie
+        github-username: jmackie
+
+local-bin-path: /home/jmackie/bin
+
+nix:
+    enable: true
+    pure: true
+    packages: [glpk, pcre, zlib.dev, zlib.out, ncurses]

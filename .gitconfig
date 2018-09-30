@@ -1,0 +1,62 @@
+[user]
+    name = Jordan Mackie
+    email = jmackie@protonmail.com
+
+[core]
+    editor = nvim
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = ~/.gitignore
+    commentchar = "\""
+
+[web]
+    browser = firefox
+
+[color]
+    ui = auto
+
+[color "branch"]
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red bold
+
+[diff]
+    tool = vimdiff
+
+[difftool]
+    prompt = false
+
+[github]
+    user = jmackie
+
+[credential]
+    helper = store
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    c = commit
+    ca = commit -a
+    cam = commit -am
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    update = commit --amend --no-edit
+    graph = log --graph --abbrev-commit --decorate --date=relative --all
+    ls = ls-tree -r master --name-only
+	start = !git init && git commit --allow-empty -m \"Initial commit\"
+    tags = tag -l -n1
+
+[format]
+    pretty = format:%C(auto)%h %d %Cblue %an%Creset %s

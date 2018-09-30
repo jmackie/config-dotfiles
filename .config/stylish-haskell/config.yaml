@@ -1,0 +1,64 @@
+# stylish-haskell 0.9.2.0
+steps:
+    - simple_align:
+        cases: true
+        top_level_patterns: true
+        records: true
+    - imports:
+        align: global
+        list_align: with_alias
+        pad_module_names: true
+        long_list_align: multiline
+        empty_list_align: inherit
+        list_padding: 4
+        separate_lists: false
+        space_surround: false
+    - language_pragmas:
+        style: vertical
+        align: true
+    - trailing_whitespace: {}
+columns: 80
+newline: native
+language_extensions:
+    - AutoDeriveTypeable
+    - BangPatterns
+    - BinaryLiterals
+    - ConstraintKinds
+    - DataKinds
+    - DefaultSignatures
+    - DeriveAnyClass
+    - DeriveDataTypeable
+    - DeriveFoldable
+    - DeriveFunctor
+    - DeriveGeneric
+    - DeriveTraversable
+    - DerivingStrategies
+    - DoAndIfThenElse
+    - EmptyDataDecls
+    - ExistentialQuantification
+    - FlexibleContexts
+    - FlexibleInstances
+    - FunctionalDependencies
+    - GADTs
+    - GeneralizedNewtypeDeriving
+    - InstanceSigs
+    - KindSignatures
+    - LambdaCase
+    - MonadFailDesugaring
+    - MultiParamTypeClasses
+    - MultiWayIf
+    - NamedFieldPuns
+    - NoImplicitPrelude
+    - OverloadedStrings
+    - PackageImports
+    - PartialTypeSignatures
+    - PatternGuards
+    - PolyKinds
+    - RankNTypes
+    - RecordWildCards
+    - ScopedTypeVariables
+    - StandaloneDeriving
+    - TupleSections
+    - TypeFamilies
+    - TypeSynonymInstances
+    - ViewPatterns
