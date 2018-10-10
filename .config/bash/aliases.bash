@@ -3,8 +3,7 @@
 # Register when we're in a subshell for prompt
 alias bash='IN_SUBSHELL=1 bash'
 
-# Make some of the file manipulation programs verbose
-alias mv='mv -v'
+# Make some of the file manipulation programs verbose alias mv='mv -v'
 alias rm='rm -vi'
 alias cp='cp -v'
 
@@ -37,9 +36,6 @@ alias vim='nvim'
 
 # https://github.com/github/hub
 #eval "$(hub alias -s)"
-
-# Always use sudo because NixOS
-alias nix-repl='sudo nix-repl'
 
 # Character encoding hack; I don't really know why this is necessary...
 alias ghci="LC_ALL= ghci"
