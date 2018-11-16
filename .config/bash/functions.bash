@@ -5,23 +5,6 @@ __collapse() {
     echo "$1" | sed 's/^ *//;s/ *$//' | tr '\n' ' '
 }
 
-# Usage:
-# $ hashell aeson HTTP
-hashell() {
-    local PACKAGES
-    PACKAGES=$(
-        cat <<END
-    (haskell.packages.ghc842.override {
-        overrides = (self: super: {
-            ghc = super.ghc // { withPackages = super.ghc.withHoogle; };
-            ghcWithPackages = self.ghc.withPackages;
-        });
-    }).ghcWithPackages(pkgs: with pkgs; [ $@ ])
-END
-    )
-    nix-shell -p "$(__collapse "$PACKAGES")"
-}
-
 nix-clean() {
     nix-env --delete-generations old
     nix-collect-garbage
@@ -31,4 +14,23 @@ nix-clean() {
 
 bak() {
     mv "$1" "$1.bak"
+}
+
+mkcd() {
+    dir="$*"
+    mkdir -p "$dir" && cd "$dir" || exit
+}
+
+# Credit:
+# https://alpmestan.com/posts/2017-09-06-quick-haskell-hacking-with-nix.html
+nix-haskell() {
+    if [[ $# -lt 2 ]]; then
+        echo "Must provide a ghc version (e.g ghc821) and at least one package"
+        return 1
+    else
+        ghcver=$1
+        pkgs=${*:2}
+        echo "Starting haskell shell, ghc = $ghcver, pkgs = $pkgs"
+        nix-shell -p "haskell.packages.$ghcver.ghcWithPackages (pkgs: with pkgs; [$pkgs])"
+    fi
 }
