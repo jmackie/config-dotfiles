@@ -5,6 +5,15 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+CABAL_HOME="$HOME/.cabal"
+export CABAL_HOME
+
+if [ ! -d "$CABAL_HOME" ]; then
+    echo -n "\$CABAL_HOME not found, creating..."
+    mkdir -p "$CABAL_HOME"
+    echo 'DONE'
+fi
+
 CARGO_HOME="$HOME/.cargo"
 export CARGO_HOME
 
@@ -31,7 +40,7 @@ if [ ! -d "$GOPATH" ]; then
     echo 'DONE'
 fi
 
-PATH="$CARGO_HOME/bin:$GOPATH/bin:$PATH"
+PATH="$CABAL_HOME/bin:$CARGO_HOME/bin:$GOPATH/bin:$PATH"
 
 GH="https://github.com/jmackie"
 export GH
