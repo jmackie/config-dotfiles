@@ -39,3 +39,6 @@ alias vim='nvim'
 
 # Character encoding hack; I don't really know why this is necessary...
 alias ghci="LC_ALL= ghci"
+
+# Plot a bunch of "x,y" pairs from stdin
+alias xyline="gnuplot -p -e \"set datafile separator ','; plot '-' using 1:2 with lines, '' using 1:3 with lines;\""
