@@ -7,7 +7,7 @@ overrides:
     - files: "*.js"
       options:
             semi: true                 # use semicolons
-            singleQuote: true          # prefer single quotes
+            singleQuote: false         # prefer double quotes
             trailingComma: es5         # trailing commas where valid in ES5
             bracketSpacing: true       # prefer { foo: bar }
             arrowParens: always        # prefer (x) => x
