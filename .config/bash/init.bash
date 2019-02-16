@@ -20,6 +20,8 @@ __init() {
     #if command -v tmux >/dev/null; then
     #	[[ ! "$TERM" =~ screen ]] && [ -z "$TMUX" ] && exec tmux
     #fi
+
+    eval "$(direnv hook bash)"
 }
 
 __init
