@@ -1,6 +1,6 @@
 self: super:
 {
-    ghcWithPackages = super.haskell.packages.ghc844.ghcWithPackages (pkgs: with pkgs; [
+    ghcWithPackages = super.haskell.packages.ghc863.ghcWithPackages (pkgs: with pkgs; [
         cabal-install
         stack
         hpack
