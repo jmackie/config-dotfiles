@@ -22,6 +22,7 @@ __init() {
     #fi
 
     eval "$(direnv hook bash)"
+    [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 }
 
 __init
