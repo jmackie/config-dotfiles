@@ -48,3 +48,7 @@ fd() {
         -o -type d -print 2>/dev/null | fzf +m)" &&
         cd "$dir" || return
 }
+
+symlink() {
+    ln -s "$(realpath "$1")" "$(realpath "$2")"
+}
