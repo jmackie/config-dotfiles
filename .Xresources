@@ -8,5 +8,8 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-Xcursor*theme: Numix
-Xcursor*size: 64
+! NOTE: on NixOS I had to...
+!   nix-env -iA nixos.numix-cursor-theme
+!   symlink ~/.nix-profile/share/icons/Numix-Cursor .icons/Numix-Cursor
+Xcursor*theme: Numix-Cursor
+Xcursor*size: 32
