@@ -23,14 +23,14 @@ if [ ! -d "$CARGO_HOME" ]; then
     echo 'DONE'
 fi
 
-RUSTUP_HOME="$HOME/.rustup"
-export RUSTUP_HOME
-
-if [ ! -d "$RUSTUP_HOME" ]; then
-    echo -n "\$RUSTUP_HOME not found, creating..."
-    mkdir -p "$RUSTUP_HOME"
-    echo 'DONE'
-fi
+#RUSTUP_HOME="$HOME/.rustup"
+#export RUSTUP_HOME
+#
+#if [ ! -d "$RUSTUP_HOME" ]; then
+#    echo -n "\$RUSTUP_HOME not found, creating..."
+#    mkdir -p "$RUSTUP_HOME"
+#    echo 'DONE'
+#fi
 
 GOPATH="$HOME/.gopath"
 export GOPATH
