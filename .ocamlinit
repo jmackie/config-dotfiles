@@ -1,0 +1,3 @@
+#utop_prompt_dummy;;
+let ubox () =
+  UTop.set_show_box (not (UTop.get_show_box ()))
