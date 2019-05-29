@@ -45,6 +45,9 @@
 
 [alias]
     st = status
+    conflicts = diff --name-only --diff-filter=U
+    fix = "!nvim $(git diff --name-only --relative --diff-filter=U | uniq)"
+    
     co = checkout
     br = branch
     c = commit
@@ -55,7 +58,7 @@
     update = commit --amend --no-edit
     graph = log --graph --abbrev-commit --decorate --date=relative --all
     ls = ls-tree -r master --name-only
-	start = !git init && git commit --allow-empty -m \"Initial commit\"
+    start = !git init && git commit --allow-empty -m \"Initial commit\"
     tags = tag -l -n1
 
 [format]
