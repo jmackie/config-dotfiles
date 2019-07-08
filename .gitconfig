@@ -60,12 +60,18 @@
     ls = ls-tree -r master --name-only
     start = !git init && git commit --allow-empty -m \"Initial commit\"
     tags = tag -l -n1
+    conflicts = diff --name-only --diff-filter=U
+    fix = "!nvim $(git diff --name-only --relative --diff-filter=U | uniq)"
+    
+    # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
+    rebase-onto = "!sh -c 'git rebase --onto $1 $(git merge-base $1 $(git rev-parse --abbrev-ref HEAD))' -"
 
 [format]
     pretty = format:%C(auto)%h %d %Cblue %an%Creset %s
 
 [merge]
     tool = vscode
+    ff = only
 
 [mergetool "vscode"]
     cmd = code --wait $MERGED
