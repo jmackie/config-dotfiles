@@ -45,3 +45,6 @@ alias xyline="gnuplot -p -e \"set datafile separator ','; plot '-' using 1:2 wit
 
 # bat > cat
 alias cat="bat"
+
+# Easily copy to clipboard
+alias clip="xclip -sel clipboard"
