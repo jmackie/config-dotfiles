@@ -1,77 +1,62 @@
 [user]
-    name = Jordan Mackie
-    email = jmackie@protonmail.com
-
-[core]
-    editor = nvim
-    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-    excludesfile = ~/.gitignore
-    commentchar = "\""
-
-[web]
-    browser = firefox
-
-[color]
-    ui = auto
-
-[color "branch"]
-    current = yellow bold
-    local = green bold
-    remote = cyan bold
-
-[color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-    whitespace = red reverse
-
-[color "status"]
-    added = green bold
-    changed = yellow bold
-    untracked = red bold
-
-[diff]
-    tool = vimdiff
-
-[difftool]
-    prompt = false
+  name = Jordan Mackie
+  email = git@jmackie.dev
 
 [github]
-    user = jmackie
+  user = jmackie
 
 [credential]
-    helper = store
+  helper = store
 
-[alias]
-    st = status
-    conflicts = diff --name-only --diff-filter=U
-    fix = "!nvim $(git diff --name-only --relative --diff-filter=U | uniq)"
-    
-    co = checkout
-    br = branch
-    c = commit
-    ca = commit -a
-    cam = commit -am
-    unstage = reset HEAD --
-    last = log -1 HEAD
-    update = commit --amend --no-edit
-    graph = log --graph --abbrev-commit --decorate --date=relative --all
-    ls = ls-tree -r master --name-only
-    start = !git init && git commit --allow-empty -m \"Initial commit\"
-    tags = tag -l -n1
-    conflicts = diff --name-only --diff-filter=U
-    fix = "!nvim $(git diff --name-only --relative --diff-filter=U | uniq)"
-    
-    # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
-    rebase-onto = "!sh -c 'git rebase --onto $1 $(git merge-base $1 $(git rev-parse --abbrev-ref HEAD))' -"
+[core]
+  editor = nvim
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = ~/.gitignore
 
-[format]
-    pretty = format:%C(auto)%h %d %Cblue %an%Creset %s
+[web]
+  browser = firefox
+
+[diff]
+  tool = vimdiff
+
+[difftool]
+  prompt = false
 
 [merge]
-    tool = vscode
-    ff = only
+  tool = vimdiff
+  ff = only
 
-[mergetool "vscode"]
-    cmd = code --wait $MERGED
+[mergetool]
+  prompt = true
+
+[mergetool "vimdiff"]
+  cmd = nvim -d -O ${LOCAL} ${REMOTE} ${MERGED}
+
+[pull]
+  rebase = true
+
+[alias]
+  st = status
+  unstage = reset HEAD --
+  # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
+  rebase-onto = "!sh -c 'git rebase --onto $1 $(git merge-base $1 $(git rev-parse --abbrev-ref HEAD))' -"
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = yellow bold
+  local = green bold
+  remote = cyan bold
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+
+[color "status"]
+  added = green bold
+  changed = yellow bold
+  untracked = red bold

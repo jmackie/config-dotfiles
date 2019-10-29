@@ -1,8 +1,0 @@
-! vim: filetype=xdefaults
-! See: https://wiki.archlinux.org/index.php/Rofi
-
-rofi.lines: 10
-rofi.font: Hack 25
-rofi.theme: lb
-
-! Also see: rofi -dump-Xresources
