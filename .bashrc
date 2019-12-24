@@ -1,20 +1,7 @@
 #!/usr/bin/env bash
 
-export TERM=xterm-256color
-export PAGER='less -S -# 1'
-
 export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" " $(((SHLVL > 3)) && echo $((SHLVL - 3)))\$ "'
 #                                                  ^^ display terminal depth (our baseline is 3 because reasons)
-
-alias rm='rm -vi'
-alias grep='grep --color'
-alias ll='ls -lAhF --color=auto'
-alias wifi='nmcli device wifi'
-alias vim='nvim'
-alias cat="bat"
-alias myip='curl http://ipecho.net/plain; echo'
-alias randpass='openssl rand -base64 20'
-alias yank='xclip -selection clipboard'
 
 # fzf
 # https://github.com/junegunn/fzf/wiki/examples
