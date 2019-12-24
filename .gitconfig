@@ -1,6 +1,7 @@
 [user]
   name = Jordan Mackie
   email = git@jmackie.dev
+  signingkey = A2C6DF10B3C502CF
 
 [github]
   user = jmackie
@@ -60,3 +61,6 @@
   added = green bold
   changed = yellow bold
   untracked = red bold
+
+[commit]
+  gpgsign = true
