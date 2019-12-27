@@ -1,7 +1,57 @@
 #!/usr/bin/env bash
 
-export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" " $(((SHLVL > 3)) && echo $((SHLVL - 3)))\$ "'
-#                                                  ^^ display terminal depth (our baseline is 3 because reasons)
+__write_prompt() {
+  local last_exit=$?
+  local prompt_char="❯"
+  local njobs
+  njobs="$(jobs | wc -l)"
+
+  # Pretty colour functions
+  echo_colour() {
+    local _end="\[\033[0m\]"
+    echo -n -e "${1}${2}${_end}";
+  }
+
+  echo_white() { echo_colour "\[\033[0;37m\]" "$1"; }
+  echo_red_bold() { echo_colour "\[\033[1;31m\]" "$1"; }
+  echo_cyan_bold() { echo_colour "\[\033[1;36m\]" "$1"; }
+  echo_green_bold() { echo_colour "\[\033[1;32m\]" "$1"; }
+  echo_yellow_bold() { echo_colour "\[\033[1;33m\]" "$1"; }
+  echo_gray_bold() { echo_colour "\[\033[1;30m\]" "$1"; }
+
+  # Standard prompt things
+  echo_green_bold "[${USER}@${HOSTNAME}] "
+  echo_gray_bold "$(pwd)"
+  echo_yellow_bold "$(GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUPSTREAM=1 GIT_PS1_SHOWCOLORHINTS=1 __git_ps1)"
+
+  # newline
+  echo
+
+  if [[ "$njobs" -gt "0" ]]; then
+    echo_gray_bold "($njobs) "
+  fi
+
+  # Display how many terminals deep we are
+  for ((n=3; n < SHLVL; n++)); do
+    echo_white "$prompt_char"
+  done
+
+  # Toggle the colour of the final $prompt_char
+  # based on the previous exit code
+  case $last_exit in
+  0|148)
+    # NOTE: "148" is returned when a process is suspended (Ctrl+z)
+    echo_green_bold "$prompt_char ";;
+  *)
+    echo_red_bold "$prompt_char ";;
+  esac
+}
+
+__prompt() {
+  PS1="$(__write_prompt)"
+}
+
+export PROMPT_COMMAND=__prompt
 
 # fzf
 # https://github.com/junegunn/fzf/wiki/examples
