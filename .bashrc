@@ -2,7 +2,14 @@
 
 __write_prompt() {
   local last_exit=$?
-  local prompt_char="❯"
+
+  local prompt_char
+  if [[ -z "$IN_NIX_SHELL" ]]; then
+    prompt_char="❯"
+  else
+    prompt_char="λ"
+  fi
+
   local njobs
   njobs="$(jobs | wc -l)"
 
