@@ -28,7 +28,7 @@ __write_prompt() {
 
   # Standard prompt things
   echo_green_bold "[${USER}@${HOSTNAME}] "
-  echo_gray_bold "$(pwd)"
+  echo_gray_bold "$(pwd | sed "s ${HOME} \~ ")"
   echo_yellow_bold "$(GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUPSTREAM=1 GIT_PS1_SHOWCOLORHINTS=1 __git_ps1)"
 
   # newline
