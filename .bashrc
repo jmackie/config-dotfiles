@@ -26,10 +26,18 @@ __write_prompt() {
   echo_yellow_bold() { echo_colour "\[\033[1;33m\]" "$1"; }
   echo_gray_bold() { echo_colour "\[\033[1;30m\]" "$1"; }
 
+  fn_exists() {
+    declare -f -F "$1" > /dev/null
+    return $?
+  }
+
   # Standard prompt things
   echo_green_bold "[${USER}@${HOSTNAME}] "
   echo_gray_bold "$(pwd | sed "s ${HOME} \~ ")"
-  echo_yellow_bold "$(GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUPSTREAM=1 GIT_PS1_SHOWCOLORHINTS=1 __git_ps1)"
+
+  if fn_exists __git_ps1; then
+    echo_yellow_bold "$(GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUPSTREAM=1 GIT_PS1_SHOWCOLORHINTS=1 __git_ps1)"
+  fi
 
   # newline
   echo
