@@ -31,8 +31,15 @@ __write_prompt() {
     return $?
   }
 
-  # Standard prompt things
-  echo_green_bold "[${USER}@${HOSTNAME}] "
+  case $HOSTNAME in
+  jmackie-labtop)
+    echo_green_bold "[${USER}@${HOSTNAME}] ";;
+  jmackie-habito)
+    echo_cyan_bold "[${USER}@${HOSTNAME}] ";;
+  *)
+    echo_red_bold "[${USER}@${HOSTNAME}] ";;
+  esac
+
   echo_gray_bold "$(pwd | sed "s ${HOME} \~ ")"
 
   if fn_exists __git_ps1; then
