@@ -1,76 +1,88 @@
 #!/usr/bin/env bash
 
 __write_prompt() {
-  local last_exit=$?
+	local last_exit=$?
 
-  local prompt_char
-  if [[ -z "$IN_NIX_SHELL" ]]; then
-    prompt_char="❯"
-  else
-    prompt_char="λ"
-  fi
+	local prompt_char
+	if [[ -z "$IN_NIX_SHELL" ]]; then
+		prompt_char="❯"
+	else
+		prompt_char="λ"
+	fi
 
-  local njobs
-  njobs="$(jobs | wc -l)"
+	local njobs
+	njobs="$(jobs | wc -l)"
 
-  # Pretty colour functions
-  echo_colour() {
-    local _end="\[\033[0m\]"
-    echo -n -e "${1}${2}${_end}";
-  }
+	# Pretty colour functions
+	echo_colour() {
+		local _end="\[\033[0m\]"
+		echo -n -e "${1}${2}${_end}"
+	}
 
-  echo_white() { echo_colour "\[\033[0;37m\]" "$1"; }
-  echo_red_bold() { echo_colour "\[\033[1;31m\]" "$1"; }
-  echo_cyan_bold() { echo_colour "\[\033[1;36m\]" "$1"; }
-  echo_green_bold() { echo_colour "\[\033[1;32m\]" "$1"; }
-  echo_yellow_bold() { echo_colour "\[\033[1;33m\]" "$1"; }
-  echo_gray_bold() { echo_colour "\[\033[1;30m\]" "$1"; }
+	echo_white() { echo_colour "\[\033[0;37m\]" "$1"; }
+	echo_red_bold() { echo_colour "\[\033[1;31m\]" "$1"; }
+	echo_cyan_bold() { echo_colour "\[\033[1;36m\]" "$1"; }
+	echo_green_bold() { echo_colour "\[\033[1;32m\]" "$1"; }
+	echo_yellow_bold() { echo_colour "\[\033[1;33m\]" "$1"; }
+	echo_gray_bold() { echo_colour "\[\033[1;30m\]" "$1"; }
 
-  fn_exists() {
-    declare -f -F "$1" > /dev/null
-    return $?
-  }
+	echo_host_colour() {
+		# Colour for specific parts of the prompt, based on the hostname.
+		# This is so I don't get confused when swapping/ssh'ing into
+		# different machines.
+		case $HOSTNAME in
+		jmackie-labtop)
+			echo_green_bold "$1"
+			;;
+		jmackie-habito)
+			echo_cyan_bold "$1"
+			;;
+		*)
+			echo_red_bold "$1"
+			;;
+		esac
+	}
 
-  case $HOSTNAME in
-  jmackie-labtop)
-    echo_green_bold "[${USER}@${HOSTNAME}] ";;
-  jmackie-habito)
-    echo_cyan_bold "[${USER}@${HOSTNAME}] ";;
-  *)
-    echo_red_bold "[${USER}@${HOSTNAME}] ";;
-  esac
+	fn_exists() {
+		declare -f -F "$1" >/dev/null
+		return $?
+	}
 
-  echo_gray_bold "$(pwd | sed "s ${HOME} \~ ")"
+	echo_host_colour "[${USER}@${HOSTNAME}] "
 
-  if fn_exists __git_ps1; then
-    echo_yellow_bold "$(GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUPSTREAM=1 GIT_PS1_SHOWCOLORHINTS=1 __git_ps1)"
-  fi
+	echo_gray_bold "$(pwd | sed "s ${HOME} \~ ")"
 
-  # newline
-  echo
+	if fn_exists __git_ps1; then
+		echo_yellow_bold "$(GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUPSTREAM=1 GIT_PS1_SHOWCOLORHINTS=1 __git_ps1)"
+	fi
 
-  if [[ "$njobs" -gt "0" ]]; then
-    echo_gray_bold "($njobs) "
-  fi
+	# newline
+	echo
 
-  # Display how many terminals deep we are
-  for ((n=3; n < SHLVL; n++)); do
-    echo_white "$prompt_char"
-  done
+	if [[ "$njobs" -gt "0" ]]; then
+		echo_gray_bold "($njobs) "
+	fi
 
-  # Toggle the colour of the final $prompt_char
-  # based on the previous exit code
-  case $last_exit in
-  0|148)
-    # NOTE: "148" is returned when a process is suspended (Ctrl+z)
-    echo_green_bold "$prompt_char ";;
-  *)
-    echo_red_bold "$prompt_char ";;
-  esac
+	# Display how many terminals deep we are
+	for ((n = 3; n < SHLVL; n++)); do
+		echo_white "$prompt_char"
+	done
+
+	# Toggle the colour of the final $prompt_char
+	# based on the previous exit code
+	case $last_exit in
+	0 | 148)
+		# NOTE: "148" is returned when a process is suspended (Ctrl+z)
+		echo_host_colour "$prompt_char "
+		;;
+	*)
+		echo_red_bold "$prompt_char "
+		;;
+	esac
 }
 
 __prompt() {
-  PS1="$(__write_prompt)"
+	PS1="$(__write_prompt)"
 }
 
 export PROMPT_COMMAND=__prompt
@@ -81,8 +93,8 @@ export PROMPT_COMMAND=__prompt
 fd() {
 	local dir
 	dir="$(find "${1:-.}" -path '*/\.*' -prune \
-		-o -type d -print 2>/dev/null | fzf +m)" \
-		&& cd "$dir" || return
+		-o -type d -print 2>/dev/null | fzf +m)" &&
+		cd "$dir" || return
 }
 
 # https://alpmestan.com/posts/2017-09-06-quick-haskell-hacking-with-nix.html
