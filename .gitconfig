@@ -39,6 +39,7 @@
 [alias]
   st = status
   unstage = reset HEAD --
+  yup = !git add -up && git commit
   # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
   rebase-onto = "!sh -c 'git rebase --onto $1 $(git merge-base $1 $(git rev-parse --abbrev-ref HEAD))' -"
 
