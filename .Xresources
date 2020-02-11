@@ -10,6 +10,6 @@ Xft.rgba: rgb
 
 ! NOTE: on NixOS I had to...
 !   nix-env -iA nixos.numix-cursor-theme
-!   symlink ~/.nix-profile/share/icons/Numix-Cursor .icons/Numix-Cursor
+!   symlink ~/.nix-profile/share/icons/Numix-Cursor ~/.icons/Numix-Cursor
 Xcursor*theme: Numix-Cursor
 Xcursor*size: 32
