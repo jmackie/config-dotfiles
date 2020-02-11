@@ -64,7 +64,8 @@ __write_prompt() {
 	fi
 
 	# Display how many terminals deep we are
-	for ((n = 3; n < SHLVL; n++)); do
+	INITIAL_SHLVL=4
+	for ((n = INITIAL_SHLVL; n < SHLVL; n++)); do
 		echo_white "$prompt_char"
 	done
 
