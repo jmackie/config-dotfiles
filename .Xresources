@@ -1,6 +1,15 @@
 ! See: https://wiki.archlinux.org/index.php/HiDPI#X_Resources
-!Xft.dpi: 276
-Xft.dpi: 250
+
+! https://jnrowe.github.io/articles/tips/Sharing_Xresources_between_systems.html
+#ifndef DPI
+  #ifdef SRVR_laptop
+    #define DPI 250
+  #else
+    #define DPI 200
+  #endif
+#endif
+
+Xft.dpi: DPI
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xfg.hintstyle: hintfull
@@ -8,8 +17,8 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-! NOTE: on NixOS I had to...
+! NOTE: on NixOS you might need to...
 !   nix-env -iA nixos.numix-cursor-theme
-!   symlink ~/.nix-profile/share/icons/Numix-Cursor ~/.icons/Numix-Cursor
+!   ln -s ~/.nix-profile/share/icons/Numix-Cursor ~/.icons/Numix-Cursor
 Xcursor*theme: Numix-Cursor
 Xcursor*size: 32
