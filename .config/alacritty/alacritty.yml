@@ -37,16 +37,16 @@ dynamic_title: true
 enable_experimental_conpty_backend: false
 font:
   bold:
-    family: Hack Nerd Font Mono
+    family: Hack
     style: Bold
   glyph_offset:
     x: 0
     "y": 0
   italic:
-    family: Hack Nerd Font Mono
+    family: Hack
     style: Italic
   normal:
-    family: Hack Nerd Font Mono
+    family: Hack
     style: Regular
   offset:
     x: 0
