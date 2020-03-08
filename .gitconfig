@@ -64,4 +64,5 @@
   untracked = red bold
 
 [commit]
+  verbose = true
   gpgsign = true
