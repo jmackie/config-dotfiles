@@ -31,7 +31,7 @@ __write_prompt() {
 		# This is so I don't get confused when swapping/ssh'ing into
 		# different machines.
 		case $HOSTNAME in
-		laptop)
+		jmackie-laptop)
 			echo_green_bold "$1"
 			;;
 		jmackie-habito)
