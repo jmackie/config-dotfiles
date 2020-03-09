@@ -31,10 +31,10 @@ __write_prompt() {
 		# This is so I don't get confused when swapping/ssh'ing into
 		# different machines.
 		case $HOSTNAME in
-		jmackie-laptop)
+		jarvis)
 			echo_green_bold "$1"
 			;;
-		jmackie-habito)
+		cerebro)
 			echo_cyan_bold "$1"
 			;;
 		*)
