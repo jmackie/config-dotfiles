@@ -11,7 +11,7 @@ xset r rate 300 30
 
 # Machine specific initialization
 case $HOSTNAME in
-habito)
+jmackie-habito)
 	[[ -f ~/.screenlayout/default.sh ]] && ~/.screenlayout/default.sh
 	;;
 esac

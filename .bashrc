@@ -34,7 +34,7 @@ __write_prompt() {
 		laptop)
 			echo_green_bold "$1"
 			;;
-		habito)
+		jmackie-habito)
 			echo_cyan_bold "$1"
 			;;
 		*)
