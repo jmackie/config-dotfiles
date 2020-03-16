@@ -27,6 +27,9 @@
   tool = vimdiff
   ff = only
 
+[status]
+  submoduleSummary = true
+
 [mergetool]
   prompt = true
 
