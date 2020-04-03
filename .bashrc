@@ -90,7 +90,7 @@ __write_prompt() {
 		echo_host_colour "$prompt_char "
 		;;
 	*)
-		echo_red_bold "$prompt_char "
+		echo_red_bold "$last_exit$prompt_char "
 		;;
 	esac
 }
