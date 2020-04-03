@@ -48,12 +48,27 @@ __write_prompt() {
 		return $?
 	}
 
+	is_interesting_error_code() {
+		case $1 in
+		0 | 148)
+			return 1
+			;;
+		*)
+			return 0
+			;;
+		esac
+	}
+
 	echo_host_colour "[${USER}@${HOSTNAME}] "
 
 	echo_gray_bold "$(pwd | sed "s ${HOME} \~ ")"
 
 	if fn_exists __git_ps1; then
-		echo_yellow_bold "$(GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUPSTREAM=1 GIT_PS1_SHOWCOLORHINTS=1 __git_ps1)"
+		echo_yellow_bold "$(GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUPSTREAM=1 GIT_PS1_SHOWCOLORHINTS=1 __git_ps1) "
+	fi
+
+	if is_interesting_error_code $last_exit; then
+		echo_red_bold "($last_exit)"
 	fi
 
 	# newline
@@ -84,15 +99,11 @@ __write_prompt() {
 
 	# Toggle the colour of the final $prompt_char
 	# based on the previous exit code
-	case $last_exit in
-	0 | 148)
-		# NOTE: "148" is returned when a process is suspended (Ctrl+z)
+	if is_interesting_error_code $last_exit; then
+		echo_red_bold "$prompt_char "
+	else
 		echo_host_colour "$prompt_char "
-		;;
-	*)
-		echo_red_bold "$last_exit$prompt_char "
-		;;
-	esac
+	fi
 }
 
 __prompt() {
