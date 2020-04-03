@@ -64,13 +64,21 @@ __write_prompt() {
 	fi
 
 	# Display how many terminals deep we are
-	local INITIAL_SHLVL
+	local initial_shlvl=4
+
 	if [[ -n "$TMUX" ]]; then
-		INITIAL_SHLVL=5
-	else
-		INITIAL_SHLVL=4
+		# Don't show an extra prompt when inside tmux
+		# (the status bar communicates it)
+		initial_shlvl=$((initial_shlvl + 1))
 	fi
-	for ((n = INITIAL_SHLVL; n < SHLVL; n++)); do
+
+	if [[ -n "$IN_NIX_SHELL" ]]; then
+		# Don't show an extra prompt when inside a nix-shell
+		# (the differnet prompt_char communicates it)
+		initial_shlvl=$((initial_shlvl + 1))
+	fi
+
+	for ((n = initial_shlvl; n < SHLVL; n++)); do
 		echo_white "$prompt_char"
 	done
 
