@@ -64,7 +64,12 @@ __write_prompt() {
 	fi
 
 	# Display how many terminals deep we are
-	INITIAL_SHLVL=4
+	local INITIAL_SHLVL
+	if [[ -n "$TMUX" ]]; then
+		INITIAL_SHLVL=5
+	else
+		INITIAL_SHLVL=4
+	fi
 	for ((n = INITIAL_SHLVL; n < SHLVL; n++)); do
 		echo_white "$prompt_char"
 	done
