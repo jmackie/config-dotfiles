@@ -126,6 +126,4 @@ nix-haskell() {
 
 eval "$(direnv hook bash)"
 
-if [ -f "$HOME/.fzf.bash" ]; then
-	. "$HOME/.fzf.bash"
-fi
+# TODO: fzf things
