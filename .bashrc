@@ -112,6 +112,24 @@ __prompt() {
 
 export PROMPT_COMMAND=__prompt
 
+# https://askubuntu.com/a/95931
+encrypt_dir() {
+  local -r dir="${1:-}"
+  if [ -z "$dir" ]; then
+    2>&1 echo "usage: encrypt_dir [DIRECTORY]"
+    return 1
+  fi
+  tar -cz "$1" | gpg -c -o "$1.tgz.gpg"
+}
+decrypt_dir() {
+  local -r tgz="${1:-}"
+  if [ -z "$tgz" ]; then
+    2>&1 echo "usage: decrypt_dir [ENCRYPTED_TAR]"
+    return 1
+  fi
+  gpg -d "$1" | tar xz
+}
+
 # fzf
 # https://github.com/junegunn/fzf/wiki/examples
 # fd - cd to selected directory
