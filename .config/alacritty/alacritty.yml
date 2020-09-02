@@ -370,14 +370,11 @@ mouse_bindings:
 - action: PasteSelection
   mouse: Middle
 scrolling:
-  auto_scroll: false
-  faux_multiplier: 3
   history: 10000
   multiplier: 3
 selection:
   save_to_clipboard: false
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
-tabspaces: 8
 visual_bell:
   animation: EaseOutExpo
   color: "0xffffff"
