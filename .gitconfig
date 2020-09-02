@@ -11,8 +11,12 @@
 
 [core]
   editor = nvim
+  pager = delta
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   excludesfile = ~/.gitignore
+
+[interactive]
+  diffFilter = delta --color-only
 
 [web]
   browser = firefox
@@ -69,3 +73,12 @@
 [commit]
   verbose = true
   gpgsign = true
+
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none

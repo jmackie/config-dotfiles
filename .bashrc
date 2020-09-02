@@ -156,3 +156,5 @@ nix-haskell() {
 eval "$(direnv hook bash)"
 
 # TODO: fzf things
+
+alias habassador_port='sudo ssh -N -L 80:localhost:80 jmackie@cerebro.localdomain'
