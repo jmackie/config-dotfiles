@@ -16,7 +16,7 @@
   excludesfile = ~/.gitignore
 
 [interactive]
-  diffFilter = delta --color-only
+  diffFilter = delta
 
 [web]
   browser = firefox
