@@ -9,6 +9,10 @@ if [ -n "$BASH_VERSION" ]; then
 	fi
 fi
 
+# Most of my configurations will respect this variable
+# (prefixing with JMACKIE because setting THEME might have surprising effects...)
+export JMACKIE_THEME="dark"
+
 # if not in an ssh 
 if [ -z "$SSH_CLIENT" ] || [ -z "$SSH_TTY" ]; then
   # if X isn't already running then startx on login
