@@ -3,7 +3,7 @@
 ! https://jnrowe.github.io/articles/tips/Sharing_Xresources_between_systems.html
 #ifndef DPI
   #ifdef SRVR_jarvis
-    #define DPI 250
+    #define DPI 160
   #else
     #define DPI 200
   #endif
