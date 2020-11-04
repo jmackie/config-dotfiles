@@ -15,8 +15,8 @@
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   excludesfile = ~/.gitignore
 
-[interactive]
-  diffFilter = delta
+#[interactive]
+#  diffFilter = delta
 
 [web]
   browser = firefox
