@@ -9,6 +9,9 @@
 # xset r rate delay [rate]
 xset r rate 300 30
 
+# Dim the screen a bit
+xrandr --output eDP-1 --brightness 0.7
+
 # Machine specific initialization
 case $HOSTNAME in
 cerebro)
